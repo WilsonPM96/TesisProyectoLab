@@ -2,6 +2,23 @@
   <div class="p-col-12">
     <span class="nombre">Configuraciones Generales</span>
   </div>
+  <div class="p-col-12"></div>
+  <div class="p-col-12">
+    <div class="p-grid">
+      <div class="p-col-2"></div>
+      <div class="p-col-3">
+        <span>Laboratorio</span>
+      </div>
+      <div class="p-col-2"></div>
+      <div class="p-col-3">
+        <p-dropdown *ngIf="nuevo === false" [options]="laboratorios" optionLabel="nombre_lab"></p-dropdown>
+        <input type="text" pInputText [(ngModel)]="laboratorio.nombre_lab">
+      </div>
+      <div class="p-col-2">
+        <button pButton type="button" label="Agregar Laboratorio" (click)="ingresarNuevo()"></button>
+      </div>
+    </div>
+  </div>
   <div class="p-col-12">
     <input type="file" #csvReader name="Adjuntar Horario" id="txtFileUpload" (change)="uploadListener($event)" accept=".csv" />
   </div>

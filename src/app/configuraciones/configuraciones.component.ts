@@ -1,6 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Horario} from "../interfaces/horario";
 import {HorariosService} from "../servicios/horarios.service";
+import {Presentacion} from "../interfaces/presentacion";
+import {PresentacionService} from "../servicios/presentacion.service";
 
 @Component({
   selector: 'app-configuraciones',
@@ -8,17 +10,31 @@ import {HorariosService} from "../servicios/horarios.service";
   styleUrls: ['./configuraciones.component.css']
 })
 export class ConfiguracionesComponent implements OnInit {
-
+  laboratorios: Presentacion[];
+  laboratorio: Presentacion;
+  nuevo: boolean;
   public records: any[] = [];
-  constructor(private horarioService: HorariosService) { }
-
-  ngOnInit() {
+  constructor(private horarioService: HorariosService, private presentService: PresentacionService) {
+    this.laboratorios = [];
   }
 
+  ngOnInit() {
+    this.nuevo = false;
+    this.presentService.getInformacion().subscribe((res) => {
+      this.laboratorios = res;
+    });
+  }
+  ingresarNuevo() {
+    this.nuevo = true;
+    this.laboratorio = {
+      id_laboratorio: '', nombre_lab: '', imagen_lab: '',
+      num_lab: '', id_horario: ''
+    };
+  }
   uploadListener($event: any): void {
 
     let files = $event.srcElement.files;
-
+    console.log(files);
     if (this.isValidCSVFile(files[0])) {
 
       let input = $event.target;
@@ -29,9 +45,9 @@ export class ConfiguracionesComponent implements OnInit {
       reader.onload = () => {
         let csvData = reader.result;
         let csvRecordsArray = (<string>csvData).split(/\r\n|\n/);
-
         let headersRow = this.getHeaderArray(csvRecordsArray);
-
+        let datos = {id_horario: 1, materias: csvRecordsArray, cabeceras: headersRow};
+        this.horarioService.guardarHorario(datos);
         this.records = this.getDataRecordsArrayFromCSVFile(csvRecordsArray, headersRow.length);
         this.horarioService.recibirHorario(this.records);
       };

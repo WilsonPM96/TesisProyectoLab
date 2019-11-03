@@ -10,7 +10,7 @@ import {AngularFireModule} from "@angular/fire";
 import {AngularFireDatabaseModule} from "@angular/fire/database";
 import {AngularFireAuthModule} from "@angular/fire/auth";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {ConfirmDialogModule, InputTextModule, MessagesModule, TabViewModule} from "primeng/primeng";
+import {ConfirmDialogModule, DropdownModule, InputTextModule, MessagesModule, TabViewModule} from "primeng/primeng";
 import {HorariosService} from "./servicios/horarios.service";
 import {PresentacionService} from "./servicios/presentacion.service";
 import {AngularFirestore} from "@angular/fire/firestore";
@@ -60,7 +60,8 @@ export const confDataBase = {
     ButtonModule,
     MessagesModule,
     MessageModule,
-    ToastModule
+    ToastModule,
+    DropdownModule
   ],
   providers: [
     HorariosService,
