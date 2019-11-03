@@ -1,0 +1,29 @@
+span.nombre {
+  display: block;
+  text-align: center;
+  font-size: 48pt;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  color: #000;
+}
+span.numero {
+  display: block;
+  text-align: center;
+  font-size: 28pt;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  color: #000;
+}
+img {
+  display: block;
+  margin: auto;
+  width: 450px;
+  height: 450px;
+}
+.fondo {
+  background-color: transparent;
+  background-image: url("https://png.pngtree.com/thumb_back/fw800/background/20190223/ourmid/pngtree-business-technology-background-display-board-display-boardmodernbackground-materialtechnologybackground-image_75392.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}

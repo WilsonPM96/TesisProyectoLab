@@ -1,0 +1,8 @@
+span.nombre {
+  display: block;
+  text-align: center;
+  font-size: 38pt;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  color: #000;
+}
