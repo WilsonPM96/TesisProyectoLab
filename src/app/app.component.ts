@@ -25,6 +25,7 @@ export class AppComponent implements OnInit {
     if (tecla.key === 'F9') {
       if (this.configuraciones === false) {
         this.displayClave = true;
+        document.getElementById('inputDialog').focus();
       } else if (this.configuraciones === true) {
         this.configuraciones =! this.configuraciones;
       }

@@ -11,24 +11,26 @@ import {PresentacionService} from "../servicios/presentacion.service";
 })
 export class ConfiguracionesComponent implements OnInit {
   laboratorios: Presentacion[];
-  laboratorio: Presentacion;
+  laboratorioSeleccionado: Presentacion;
   nuevo: boolean;
   public records: any[] = [];
   constructor(private horarioService: HorariosService, private presentService: PresentacionService) {
     this.laboratorios = [];
+    this.laboratorioSeleccionado = {};
   }
 
   ngOnInit() {
     this.nuevo = false;
     this.presentService.getInformacion().subscribe((res) => {
       this.laboratorios = res;
+      this.laboratorioSeleccionado = this.laboratorios[0];
     });
   }
   ingresarNuevo() {
     this.nuevo = true;
-    this.laboratorio = {
-      id_laboratorio: '', nombre_lab: '', imagen_lab: '',
-      num_lab: '', id_horario: ''
+    this.laboratorioSeleccionado = {
+      id_laboratorio: '2', nombre_lab: '', imagen_lab: '', //id dinamico
+      num_lab: '', id_horario: '2'
     };
   }
   uploadListener($event: any): void {
@@ -46,7 +48,7 @@ export class ConfiguracionesComponent implements OnInit {
         let csvData = reader.result;
         let csvRecordsArray = (<string>csvData).split(/\r\n|\n/);
         let headersRow = this.getHeaderArray(csvRecordsArray);
-        let datos = {id_horario: 1, materias: csvRecordsArray, cabeceras: headersRow};
+        let datos = {id_horario: 1, materias: csvRecordsArray, cabeceras: headersRow}; //hacer id dinamico
         this.horarioService.guardarHorario(datos);
         this.records = this.getDataRecordsArrayFromCSVFile(csvRecordsArray, headersRow.length);
         this.horarioService.recibirHorario(this.records);
@@ -94,5 +96,8 @@ export class ConfiguracionesComponent implements OnInit {
       headerArray.push(headers[j]);
     }
     return headerArray;
+  }
+  guardarRegistro() {
+    this.presentService.guardarLabo(this.laboratorioSeleccionado);
   }
 }

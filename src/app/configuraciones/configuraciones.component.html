@@ -1,4 +1,4 @@
-<div class="p-grid">
+<div class="p-grid fondo">
   <div class="p-col-12">
     <span class="nombre">Configuraciones Generales</span>
   </div>
@@ -11,16 +11,78 @@
       </div>
       <div class="p-col-2"></div>
       <div class="p-col-3">
-        <p-dropdown *ngIf="nuevo === false" [options]="laboratorios" optionLabel="nombre_lab"></p-dropdown>
-        <input type="text" pInputText [(ngModel)]="laboratorio.nombre_lab">
+        <p-dropdown *ngIf="nuevo === false" [options]="laboratorios" optionLabel="nombre_lab" [(ngModel)]="laboratorioSeleccionado"></p-dropdown>
+        <input *ngIf="nuevo === true" type="text" pInputText [(ngModel)]="laboratorioSeleccionado.nombre_lab" placeholder="Ingrese un nombre">
       </div>
       <div class="p-col-2">
-        <button pButton type="button" label="Agregar Laboratorio" (click)="ingresarNuevo()"></button>
+        <button *ngIf="nuevo === false" class="ui-button-raised" pButton type="button" label="Nuevo" (click)="ingresarNuevo()"></button>
       </div>
     </div>
   </div>
   <div class="p-col-12">
-    <input type="file" #csvReader name="Adjuntar Horario" id="txtFileUpload" (change)="uploadListener($event)" accept=".csv" />
+    <div class="p-grid">
+      <div class="p-col-2"></div>
+      <div class="p-col-3">
+        <span>Número Laboratorio</span>
+      </div>
+      <div class="p-col-2"></div>
+      <div class="p-col-3">
+        <span *ngIf="nuevo === false">{{laboratorioSeleccionado.num_lab}}</span>
+        <input *ngIf="nuevo === true" type="text" pInputText [(ngModel)]="laboratorioSeleccionado.num_lab" placeholder="Ingrese un número">
+      </div>
+      <div class="p-col-2">
+        <button *ngIf="nuevo === false" class="ui-button-raised ui-button-success" pButton type="button" label="Editar" (click)="editarExistente()"></button>
+      </div>
+    </div>
+  </div>
+  <div class="p-col-12">
+    <div class="p-grid" *ngIf="nuevo === true">
+      <div class="p-col-2"></div>
+      <div class="p-col-3">
+        <span>URL Imágen</span>
+      </div>
+      <div class="p-col-2"></div>
+      <div class="p-col-3">
+        <input  type="text" pInputText [(ngModel)]="laboratorioSeleccionado.imagen_lab" placeholder="Url de la imagen">
+      </div>
+      <div class="p-col-2">
+      </div>
+      <div class="p-col-12" >
+        <img *ngIf="laboratorioSeleccionado.imagen_lab !== ''" src="{{laboratorioSeleccionado?.imagen_lab}}" alt="Imagen Laboratorio">
+      </div>
+    </div>
+    <div class="p-grid" *ngIf="nuevo === false">
+      <div class="p-col-12">
+        <img src="{{laboratorioSeleccionado?.imagen_lab}}" alt="Imagen Laboratorio">
+      </div>
+    </div>
+  </div>
+  <div class="p-col-12">
+    <div class="p-grid">
+      <div class="p-col-2"></div>
+      <div class="p-col-3">
+        <span>Archivo de Horario</span>
+      </div>
+      <div class="p-col-2"></div>
+      <div class="p-col-3">
+        <span *ngIf="nuevo === false">Archivo Existente!</span>
+        <input *ngIf="nuevo === true" type="file" #csvReader name="Adjuntar Horario" id="txtFileUpload" (change)="uploadListener($event)" accept=".csv" />
+      </div>
+      <div class="p-col-2"></div>
+    </div>
+  </div>
+  <div class="p-col-12"></div>
+  <div class="p-col-12">
+    <div class="p-grid">
+      <div class="p-col-4"></div>
+      <div class="p-col-2">
+        <button *ngIf="nuevo === true" class="ui-button-raised ui-button-success" pButton type="button" label="Guardar" (click)="guardarRegistro()"></button>
+      </div>
+      <div class="p-col-2">
+        <button *ngIf="nuevo === true" class="ui-button-raised ui-button-warning" pButton type="button" label="Cancelar" (click)="cancelarRegistro()"></button>
+      </div>
+      <div class="p-col-4"></div>
+    </div>
   </div>
 </div>
 

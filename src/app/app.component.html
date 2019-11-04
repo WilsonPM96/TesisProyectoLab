@@ -1,7 +1,7 @@
 <p-toast [style]="{marginTop: '80px'}" position="top-right" key="info"></p-toast>
 <div class="p-grid" id="general" (keydown)="presionoTecla($event)">
   <div class="p-col-12">
-    <p-tabView [activeIndex]="activeIndex">
+    <p-tabView  [activeIndex]="activeIndex">
       <p-tabPanel header="Inicio">
         <app-presentacion></app-presentacion>
       </p-tabPanel>
@@ -25,7 +25,7 @@
     </div>
     <div class="p-col-1"></div>
     <div class="p-col-5">
-      <input type="password" pInputText placeholder="Clave" [(ngModel)]="clave" (keydown.enter)="verificarClave()">
+      <input type="password" pInputText placeholder="Clave" [(ngModel)]="clave" (keydown.enter)="verificarClave()" id="inputDialog">
     </div>
     <div class="p-col-1"></div>
     <div class="p-col-4"></div>

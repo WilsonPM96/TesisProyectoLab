@@ -11,4 +11,7 @@ export class PresentacionService {
   getInformacion(): Observable<any[]> {
     return this.baseDatos.collection('informacion').valueChanges();
   }
+  guardarLabo(datosLabo) {
+    return this.baseDatos.collection('informacion').add(datosLabo);
+  }
 }
