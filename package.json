@@ -21,7 +21,7 @@
     "@angular/platform-browser": "~8.2.13",
     "@angular/platform-browser-dynamic": "~8.2.13",
     "@angular/router": "~8.2.13",
-    "chart.js": "^2.9.2",
+    "chart.js": "^2.9.4",
     "firebase": "^7.2.3",
     "primeflex": "^1.0.0",
     "primeicons": "^2.0.0",
